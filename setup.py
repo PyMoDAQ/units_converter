@@ -22,7 +22,7 @@ with open('README.rst') as fd:
     long_description = fd.read()
 
 setupOpts = dict(
-    name='UnitsConverter',
+    name='units_converter',
     description='Wave units converter',
     long_description='',
     license='CECILL-B',

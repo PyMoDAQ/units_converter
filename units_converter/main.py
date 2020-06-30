@@ -1,6 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSlot, QThread, QLocale
 import sys
+try:
+    import pyqtgraph
+    SpinBox = pyqtgraph.SpinBox
+except :
+    SpinBox = QtWidgets.QDoubleSpinBox
 
 
 Cb = 1.602176e-19  # coulomb
@@ -11,9 +16,9 @@ c = 2.997924586e8  # m.s-1
 class UnitsConverter(QObject):
     def __init__(self, parent=None):
         super().__init__()
-        QLocale.setDefault(QLocale(QLocale.English, QLocale.UnitedStates))
+        #QLocale.setDefault(QLocale(QLocale.English, QLocale.UnitedStates))
         if parent is None:
-            parent = QtWidgets.QGroupBox('Units Converter')
+            parent = QtWidgets.QWidget()
         self.parent = parent
         self.setupUi()
 
@@ -38,25 +43,25 @@ class UnitsConverter(QObject):
         vlayout = QtWidgets.QVBoxLayout()
         self.parent.setLayout(vlayout)
 
-        self.ui.E_cm_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_cm_sb = SpinBox()
         self.ui.E_cm_sb.setRange(0, 1e12)
         self.ui.E_cm_sb.setSuffix(' cm-1')
-        self.ui.E_eV_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_eV_sb = SpinBox()
         self.ui.E_eV_sb.setRange(0, 1e12)
         self.ui.E_eV_sb.setSuffix(' eV')
-        self.ui.E_Hz_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_Hz_sb = SpinBox()
         self.ui.E_Hz_sb.setRange(0, 1e20)
         self.ui.E_Hz_sb.setSuffix(' Hz')
-        self.ui.E_J_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_J_sb = SpinBox()
         self.ui.E_J_sb.setRange(0, 1e12)
         self.ui.E_J_sb.setSuffix(' J')
-        self.ui.E_cm_fom_nm_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_cm_fom_nm_sb = SpinBox()
         self.ui.E_cm_fom_nm_sb.setRange(-1e12, 1e12)
         self.ui.E_cm_fom_nm_sb.setSuffix(' cm-1')
-        self.ui.E_nm_ref_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_nm_ref_sb = SpinBox()
         self.ui.E_nm_ref_sb.setRange(0.1, 1e12)
         self.ui.E_nm_ref_sb.setSuffix(' nm')
-        self.ui.E_nm_sb = QtWidgets.QDoubleSpinBox()
+        self.ui.E_nm_sb = SpinBox()
         self.ui.E_nm_sb.setRange(0.1, 1e12)
         self.ui.E_nm_sb.setSuffix(' nm')
 
