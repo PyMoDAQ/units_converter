@@ -79,7 +79,7 @@ setup(
     #package_dir={'examples': 'examples'},  ## install examples along with the rest of the source
     package_data={},
     entry_points={},
-    python_requires='>=3.6, <3.8',
+    python_requires='>=3.6',
     install_requires=[
         ],
     include_package_data=True,
