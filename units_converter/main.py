@@ -110,7 +110,7 @@ class UnitsConverter(QObject):
 
     def update_values_from_Hz(self):
         E_Hz = self.ui.E_Hz_sb.value()
-        E_nm = 300 / E_Hz
+        E_nm = (3e8 / E_Hz) * 1e9
         self.update_ui(E_nm)
 
     def update_values_from_cm(self):
@@ -129,7 +129,7 @@ class UnitsConverter(QObject):
         self.ui.E_nm_sb.setValue(E_nm)
         self.ui.E_eV_sb.setValue(self.nm2eV(E_nm))
         self.ui.E_cm_sb.setValue(self.eV2cm(self.nm2eV(E_nm)))
-        self.ui.E_Hz_sb.setValue(3e8/E_nm)
+        self.ui.E_Hz_sb.setValue(3e8/(E_nm * 1e-9))
         if update_cmref:
             diff = -self.nm2eV(E_nm) + self.nm2eV(self.ui.E_nm_ref_sb.value())
             if diff != 0.:
